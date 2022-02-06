@@ -49,7 +49,7 @@ if (nroArgs > 0 && nroArgs < 4) {
           .catch(err => console.log(err))
       break;
       case '--stats':
-        options.validate = true;
+        options.validate = false;
         mdLinks(ruta, options)
           .then( (response) =>{
             const cant = conteo(response);
