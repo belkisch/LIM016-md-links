@@ -39,13 +39,16 @@ const extraerLinks = (ruta) => {
   const arrayMD = validarDirectorio_Archivo(ruta);
   arrayMD.forEach((md) => {
     const markdown = fs.readFileSync(md, {encoding: 'utf8'});
-    const regex = /[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b[-a-zA-Z0-9@:%_\+.~#?&//=]*/i
-    const links = markdownLinkExtractor(markdown, true).filter((link) => regex.test(link.href));
+    //const markdown = fs.readFile(md, {encoding: 'utf8'});
+    //const regex = /[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b[-a-zA-Z0-9@:%_\+.~#?&//=]*/i
+    //const links = markdownLinkExtractor(markdown, true).filter((link) => regex.test(link.href));
+    const links = markdownLinkExtractor(markdown, true)
     links.forEach(prop => {
+      console.l
       arrayLinks.push({
       path: md,
       href: prop.href,
-      text: prop.text.substring(0,50)
+      text: prop.text?.substring(0,50)
       });
     });
   })
@@ -57,25 +60,22 @@ const validarLinks = (arrayLinks) => {
   const statusLink = arrayLinks.map((link) => {
     return fetch(link.href)
       .then((result) => {
-        const statusText = result.status === 200 ? 'OK' : 'FAIL';
-        const PropiedadLinks = {
+        return {
           path: link.path,
           href: link.href,
-          text: (link.text.slice(0,50)),
+          text: (link.text?.slice(0,50)),
           status: result.status,
-          ok: statusText,
+          ok: result.status === 200 ? 'OK' : 'FAIL',
         };
-        return PropiedadLinks;
       })
       .catch((error) => {
-        const PropiedadLinks = {
+        return {
           path: link.path,
           href: link.href,
-          text: (link.text.slice(0,50)),
+          text: (link.text?.slice(0,50)),
           status: 'No Estatus',
           ok: `FAIL ${error.message}`,
         };
-        return PropiedadLinks;
       })
   });
   return Promise.all(statusLink)
