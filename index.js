@@ -81,19 +81,6 @@ const validarLinks = (arrayLinks) => {
   return Promise.all(statusLink)
 };
 
-// 7.- Verificar cantidad de links unicos y totales
-const stats = (arrayLinks) => {
-  const total = arrayLinks.map((op) => op.href);
-  const unique = new Set(arrayLinks.map(arrayLinks => arrayLinks.href));
-  return {
-    total: total.length,
-    unique: unique.size
-  }
-}
-
-
-
-
 /******************************************************    Creación de la Promesa para Exportar    ******************************************************************/
 const mdLinks = (path,options) => new Promise ((resolve,reject) => {
  const ruta = validarAbsoluta(path);

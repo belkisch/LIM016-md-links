@@ -13,3 +13,28 @@ const conteo = (arrayLinks) => {
   }
 }
 module.exports =  conteo;
+
+
+
+/*
+ *
+ *
+ *
+ *
+ *
+ *
+// 7.- Verificar cantidad de links unicos y totales
+const stats = (arrayLinks) => {
+  const total = arrayLinks.map((op) => op.href);
+  const unique = new Set(arrayLinks.map(arrayLinks => arrayLinks.href));
+  return {
+    total: total.length,
+    unique: unique.size
+  }
+}
+ *
+ *
+ *
+ *
+ *
+ */
