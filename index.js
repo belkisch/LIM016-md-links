@@ -8,7 +8,7 @@ const fetch = require('node-fetch');
   if (path.isAbsolute(ruta)) {
       return ruta
     }
-    return path.resolve(ruta)
+    return path.resolve(ruta);
 }
 
 // 2.- Validar que la Ruta Existe --> Retorna Verdadero o Falso
@@ -105,6 +105,14 @@ const mdLinks = (path,options) => new Promise ((resolve,reject) => {
   };/***** validarRuta *****/
 })
 
-module.exports = mdLinks;
 
+module.exports = {
+  validarAbsoluta,
+  validarRuta,
+  verDirectorio,
+  validarDirectorio_Archivo,
+  extraerLinks,
+  validarLinks,
+  mdLinks
+};
 //mdLinks README.md --stats --validate

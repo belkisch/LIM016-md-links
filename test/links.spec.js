@@ -1,6 +1,5 @@
 const conteo = require('../link');
 
-
 const links = [
   { path: 'C:\Users\N14\Documents\GitHub\LIM016-md-links\dir\dir_1\example2.md', href: 'https://curriculum.laboratoria.la/es/topics/javascript/04-arrays', text: 'Arreglos', status: '200', ok: 'OK' },
   { path: 'C:\Users\N14\Documents\GitHub\LIM016-md-links\dir\dir_1\example2.md', href: 'https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Array/', text: 'Array - MDN', status: '200', ok: 'OK' },
@@ -15,6 +14,7 @@ const links = [
   { path: 'C:\Users\N14\Documents\GitHub\LIM016-md-links\dir\example.md', href: 'https://imgur.com/notfound', text: ' Imgur', status: '404', ok: 'FAIL' },
   { path: 'C:\Users\N14\Documents\GitHub\LIM016-md-links\dir\example.md', href: 'https://github.com/404', text: ' GitHub', status: '404', ok: 'FAIL' }
 ];
+
 
 
 describe('Verificar si es una funcion ', () => {

@@ -1,6 +1,12 @@
 #!/usr/bin/env node
 
-const mdLinks = require('./index');
+const {validarAbsoluta,
+  validarRuta,
+  verDirectorio,
+  validarDirectorio_Archivo,
+  extraerLinks,
+  validarLinks,
+  mdLinks} = require('./index');
 const conteo = require('./link');
 const figlet = require('figlet');
 const [,,...args] = process.argv;
@@ -20,9 +26,10 @@ figlet('Bienvenido  a   mdLinks!!', function(err, data) {
 });
 
 if (nroArgs > 0 && nroArgs < 4) {
-  setTimeout(() => {if(nroArgs === 1) {
+  setTimeout(() => {
+  if(nroArgs === 1) {
     mdLinks(ruta, options)
-      .then((response) =>{
+      .then((response) => {
         return response.forEach((element)=> {
           let path = element.path,
               href = element.href,
@@ -40,8 +47,8 @@ if (nroArgs > 0 && nroArgs < 4) {
             return response.forEach((element)=> {
               let path = element.path,
                   href = element.href,
-                  text = element.text;
-                  status = element.status;
+                  text = element.text,
+                  status = element.status,
                   ok = element.ok;
               return console.log(path  + ' ' + href + ' ' + ok + ' ' + status + ' ' + text);
             });
@@ -49,7 +56,7 @@ if (nroArgs > 0 && nroArgs < 4) {
           .catch(err => console.log(err))
       break;
       case '--stats':
-        options.validate = false;
+        options.validate = true;
         mdLinks(ruta, options)
           .then( (response) =>{
             const cant = conteo(response);
@@ -76,8 +83,7 @@ if (nroArgs > 0 && nroArgs < 4) {
     } else {
       console.log('Solicita Ayuda.  mdLinks --help')
     }
-  }}, 2000)
-
+  }}, 2000);
 } else {
   console.log('Comandos Incorrectos o Inválidos. Intente con la opción --help');
 }
